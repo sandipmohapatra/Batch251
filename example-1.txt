@@ -63,9 +63,30 @@ public class Register extends GenericServlet
 			 ps.execute();
 			 pw.println("row deleted");
 			 }
+			 else if(d.equals("select"))
+			 {
+				 pw.println("<table border=1>");
+				 pw.println("<tr><td>Employee id<td>Name<td>Address</tr>");
+				 PreparedStatement ps=con.prepareStatement("select * from employee");
+				 ResultSet rs=ps.executeQuery();
+				 while(rs.next())
+				 {
+					 pw.println("<tr><td>"+rs.getString(1)+"<td>"+rs.getString(2)+"<td>"+rs.getString(3)+"</tr>");
+				 }
+				 pw.println("</table>");
+			 }
 			 else
 			 {
-				 pw.println("full data will be displayed");
+				 pw.println("<table border=1>");
+				 pw.println("<tr><td>Employee id<td>Name<td>Address</tr>");
+				 PreparedStatement ps=con.prepareStatement("select * from employee where empid=?");
+				 ps.setString(1,a);
+				 ResultSet rs=ps.executeQuery();
+				 while(rs.next())
+				 {
+					 pw.println("<tr><td>"+rs.getString(1)+"<td>"+rs.getString(2)+"<td>"+rs.getString(3)+"</tr>");
+				 }
+				 pw.println("</table>");
 			 }
 		}
 		catch(Exception ae)
