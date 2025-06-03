@@ -6,7 +6,10 @@
 <tr><td>Enter EmpID<td><input type=text name=t1 size=20></tr>
 <tr><td>Enter Name<td><input type=text name=t2 size=20></tr>
 <tr><td>Enter Address<td><input type=text name=t3 size=20></tr>
-<tr><td><td><input type=submit value=submit>
+<tr><td><td><input type=submit value=insert name=b1>
+<input type=submit value=update name=b1>
+<input type=submit value=delete name=b1>
+<input type=submit value=select name=b1>
 </tr>
 </table>
 </form>
