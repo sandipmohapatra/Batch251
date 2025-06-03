@@ -1,0 +1,58 @@
+<html>
+<body bgcolor=cyan>
+<h1>Employee Registration Page</h1><hr>
+<form action=Register>
+<table>
+<tr><td>Enter EmpID<td><input type=text name=t1 size=20></tr>
+<tr><td>Enter Name<td><input type=text name=t2 size=20></tr>
+<tr><td>Enter Address<td><input type=text name=t3 size=20></tr>
+<tr><td><td><input type=submit value=submit>
+</tr>
+</table>
+</form>
+</body>
+</html>
+---------------------------------------------
+import java.io.*;
+import java.sql.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+@WebServlet("/Register")
+public class Register extends GenericServlet
+{
+	public void init()
+	{		System.out.println("init");	}
+	@Override
+	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException 
+	{
+		PrintWriter pw=res.getWriter();
+		res.setContentType("text/html");
+		String a=req.getParameter("t1");
+		String b=req.getParameter("t2");
+		String c=req.getParameter("t3");
+		pw.println("The employee id is :"+a);
+		pw.println("<br>");
+		pw.println("The employee name is :"+b);
+		pw.println("<br>");
+		pw.println("The employee address is :"+c);
+		try
+		{
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			 Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/batch251","root","1234");
+			 PreparedStatement ps=con.prepareStatement("insert into employee values(?,?,?)");
+			 ps.setString(1,a);
+			 ps.setString(2,b);
+			 ps.setString(3,c);
+			 ps.execute();
+			 pw.println("row inserted");
+		}
+		catch(Exception ae)
+		{
+			System.out.println(ae);
+		}
+			}
+	public void destroy()
+	{		System.out.println("deleted");	}
+	
+}
+-------------------------------------------------------------------------------------------------
