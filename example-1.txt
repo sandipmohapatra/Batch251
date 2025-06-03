@@ -33,21 +33,40 @@ public class Register extends GenericServlet
 		String a=req.getParameter("t1");
 		String b=req.getParameter("t2");
 		String c=req.getParameter("t3");
-		pw.println("The employee id is :"+a);
-		pw.println("<br>");
-		pw.println("The employee name is :"+b);
-		pw.println("<br>");
-		pw.println("The employee address is :"+c);
-		try
+		String d=req.getParameter("b1");
+			try
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			 Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/batch251","root","1234");
+			 if(d.equals("insert"))
+			 {			 
 			 PreparedStatement ps=con.prepareStatement("insert into employee values(?,?,?)");
 			 ps.setString(1,a);
 			 ps.setString(2,b);
 			 ps.setString(3,c);
 			 ps.execute();
 			 pw.println("row inserted");
+			 }
+			 else if(d.equals("update"))
+			 {			 
+			 PreparedStatement ps=con.prepareStatement("update employee set name=?,address=? where empid=? ");
+			 ps.setString(1,b);
+			 ps.setString(2,c);
+			 ps.setString(3,a);
+			 ps.execute();
+			 pw.println("row updated");
+			 }
+			 else if(d.equals("delete"))
+			 {			 
+			 PreparedStatement ps=con.prepareStatement("delete from employee where empid=? ");
+			 ps.setString(1,a);
+			 ps.execute();
+			 pw.println("row deleted");
+			 }
+			 else
+			 {
+				 pw.println("full data will be displayed");
+			 }
 		}
 		catch(Exception ae)
 		{
