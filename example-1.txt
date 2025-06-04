@@ -175,3 +175,42 @@ catch(Exception ae)
 }
 %>
 ------------------------------------------------------------------------------------------------------------------------
+<h1>Login Successfull</h1>
+----------------------------------------------
+<html>
+<body bgcolor=cyan>
+<form action="LoginServlet" method=post>
+<h1><center>Employee Login Page</center></h1><hr>
+<table>
+<tr><td>Enter  name<td><input type=text name=t1 size=20></tr>
+<tr><td>Enter  password<td><input type=password name=t2 size=20></tr>
+<tr><td><td><input type=submit value="Login" ></tr>
+</table>
+</form>
+</body>
+</html>
+----------------------------------------------------------------
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet 
+{
+public void doPost(HttpServletRequest req,HttpServletResponse res)throws IOException,ServletException
+{
+	PrintWriter pw=res.getWriter();
+	res.setContentType("text/html");
+	String a=req.getParameter("t1");
+	String b=req.getParameter("t2");
+	if(a.equals("Mphasis")&& b.equals("1234"))
+	{
+		res.sendRedirect("Welcome.html");
+	}
+	else
+	{
+		res.sendRedirect("Login.html");
+	}
+}
+}
+--------------------------------------------------------------------------------------------------------
