@@ -25,7 +25,7 @@ it is classified into
 
 Directives:-
 ---------------
-Jsp directives are messages for jsp engine.they donot produce output.they tell the engine what to do with rest of the jsp page.it is enclosed with <%@-------%> tag
+Jsp directives are messages for jsp engine. They donot produce output.They tell the engine what to do with rest of the jsp page.it is enclosed with <%@-------%> tag
 the three primary directives are:-
 1)page 
 2)include
